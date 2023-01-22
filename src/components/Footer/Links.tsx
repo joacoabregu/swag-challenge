@@ -24,23 +24,23 @@ const linksInfo = [
 ];
 
 const container = css`
-    //Title
-    p {
-        font-size: 16px;
-        font-weight: 700;
-        color: ${dark01};
-    }
-    // Links
-    a {
-        font-size: 15px;
-        color: ${dark03};
-        display: block;
-        cursor: pointer;
-    }
-    * + * {
-        margin-top: 24px;
-    } 
-`
+  //Title
+  p {
+    font-size: 16px;
+    font-weight: 700;
+    color: ${dark01};
+  }
+  // Links
+  a {
+    font-size: 15px;
+    color: ${dark03};
+    display: block;
+    cursor: pointer;
+  }
+  * + * {
+    margin-top: 24px;
+  }
+`;
 
 const Links = () => {
   return (
