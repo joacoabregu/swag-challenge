@@ -36,7 +36,7 @@ const Navbar = () => {
     <nav css={nav}>
       <Container css={container} maxWidth='xl'>
         {navLinks.map((link) => (
-          <a>{link}</a>
+          <a key={link}>{link}</a>
         ))}
       </Container>
     </nav>
