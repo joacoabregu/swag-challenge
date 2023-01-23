@@ -4,6 +4,7 @@ import Header from './components/Header'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
 import RecommendedProducts from './components/RecommendedProducts'
+import CartGrid from './components/CartGrid'
 
 function App() {
   
@@ -11,6 +12,7 @@ function App() {
     <main>
       <Header />
       <Navbar />
+      <CartGrid />
       <RecommendedProducts />
       <Footer />
     </main>
