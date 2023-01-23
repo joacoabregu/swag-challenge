@@ -9,9 +9,11 @@ import Selectors from './Selectors';
 
 const footer = css`
   background-color: ${backgroundGray};
+  padding-top: 80px;
 `;
 
 const container = css`
+
   > div:nth-of-type(1) {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
