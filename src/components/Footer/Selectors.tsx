@@ -1,6 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
-import { Container, SelectChangeEvent, Select, MenuItem } from '@mui/material';
+import { SelectChangeEvent, Select, MenuItem } from '@mui/material';
 import { useState } from 'react';
 import { dark01, dark04 } from '../../styles';
 
@@ -47,7 +47,6 @@ const Selectors = () => {
           labelId='select-region'
           id='select-region'
           value={region}
-          //label='Age'
           placeholder='United States'
           onChange={changeRegion}
           sx={{ boxShadow: 'none', '.MuiOutlinedInput-notchedOutline': { border: 0 } }}
@@ -63,7 +62,6 @@ const Selectors = () => {
           labelId='select-language'
           id='select-language'
           value={language}
-          //label='Age'
           placeholder='English'
           onChange={changeLanguage}
           sx={{ boxShadow: 'none', '.MuiOutlinedInput-notchedOutline': { border: 0 } }}
