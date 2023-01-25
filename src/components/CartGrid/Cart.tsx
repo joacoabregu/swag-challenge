@@ -4,6 +4,7 @@ import ProductCard from './ProductCard';
 import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined';
 import { Button } from '@mui/material';
 import { dark01, dark05 } from '../../styles';
+import type { Cart as ICart, Action } from '../../state';
 
 const container = css`
   grid-column-start: 1;
@@ -16,23 +17,6 @@ const container = css`
   }
 `;
 
-const cartProducts = [
-  {
-    name: 'Basic T-Shirt',
-    price: '$13.50',
-    bottomElement: <ButtonRemoveProduct />,
-  },
-  {
-    name: 'Woman bottle',
-    price: '$36.50',
-    bottomElement: <ButtonRemoveProduct />,
-  },
-  {
-    name: 'Unisex Short Sleeve T-Shirt',
-    price: '$24',
-    bottomElement: <ButtonRemoveProduct />,
-  },
-];
 const btnStyle = css`
   padding: 0;
   color: black;
@@ -53,9 +37,14 @@ const btnStyle = css`
     font-family: 'Open Sans';
   }
 `;
-function ButtonRemoveProduct() {
+
+interface ButtonRemoveProps {
+  onClickHandler: (name: string) => void;
+  name: string;
+}
+function ButtonRemoveProduct({ onClickHandler, name }: ButtonRemoveProps) {
   return (
-    <Button css={btnStyle}>
+    <Button css={btnStyle} onClick={() => onClickHandler(name)}>
       <DeleteOutlineOutlinedIcon fontSize='small' /> <span>Remove</span>
     </Button>
   );
@@ -90,7 +79,7 @@ const packContentstyle = css`
   }
 `;
 
-function PackContent() {
+function PackContent({ name, onClickHandler }: ButtonRemoveProps) {
   return (
     <div css={packContentstyle}>
       <ul>
@@ -105,30 +94,45 @@ function PackContent() {
         </li>
       </ul>
       <Button size='small'>Edit</Button> <span>|</span>{' '}
-      <Button size='small'>Remove</Button>
+      <Button size='small' onClick={() => onClickHandler(name)}>
+        Remove
+      </Button>
     </div>
   );
 }
-
-function Pack() {
-  return (
-    <ProductCard
-      name='My Christmas pack'
-      price='$71.20'
-      bottomElement={<PackContent />}
-    />
-  );
+interface Props {
+  cart: ICart;
+  dispatch: React.Dispatch<Action>;
 }
 
-const Cart = () => {
+const Cart = ({ cart, dispatch }: Props) => {
+  function handleRemove(name: string) {
+    dispatch({
+      type: 'delete',
+      name,
+    });
+  }
   return (
     <div css={container}>
       <h1>
         Your Cart <span>(3)</span>
       </h1>
-      <Pack />
-      {cartProducts.map((product) => (
-        <ProductCard key={product.name} {...product} />
+      {cart.products.map((product) => (
+        <ProductCard
+          key={product.name}
+          {...product}
+          dispatch={dispatch}
+          bottomElement={
+            product.type === 'product' ? (
+              <ButtonRemoveProduct
+                onClickHandler={handleRemove}
+                name={product.name}
+              />
+            ) : (
+              <PackContent onClickHandler={handleRemove} name={product.name} />
+            )
+          }
+        />
       ))}
     </div>
   );

@@ -2,6 +2,7 @@
 import { css } from '@emotion/react';
 import Button from '@mui/material/Button';
 import Divider from '@mui/material/Divider';
+import { Cart } from '../../state';
 import { dark01, dark03, dark05 } from '../../styles';
 
 const container = css`
@@ -64,18 +65,22 @@ const container = css`
   }
 `;
 
-const Summary = () => {
+interface Props {
+  cart: Cart;
+}
+
+const Summary = ({ cart }: Props) => {
   return (
     <div css={container}>
       <p>Order Summary</p>
       <div>
         <p>Number of items</p>
-        <p>3</p>
+        <p>{cart.totalItems} </p>
       </div>
       <Divider />
       <div>
         <p>Total</p>
-        <p>$3,560.00</p>
+        <p>$ {cart.totalPrice}</p>
       </div>
       <Button variant='contained' fullWidth>
         Proceed to Checkout

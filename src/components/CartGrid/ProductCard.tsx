@@ -2,9 +2,9 @@
 import { css } from '@emotion/react';
 import ProductPhoto from '../../assets/Photo.png';
 import { SelectChangeEvent, Select, MenuItem } from '@mui/material';
-import { useState } from 'react';
 import { dark09 } from '../../styles';
 import { EmotionJSX } from '@emotion/react/types/jsx-namespace';
+import type { Action } from '../../state';
 
 const container = css`
   display: flex;
@@ -82,16 +82,28 @@ const container = css`
 
 interface Props {
   name: string;
-  price: string;
+  price: number;
+  quantity: number;
   bottomElement: EmotionJSX.Element;
+  dispatch: React.Dispatch<Action>;
 }
 
-const ProductCard = ({ name, price, bottomElement }: Props) => {
-  const [region, setRegion] = useState('1');
+const ProductCard = ({
+  name,
+  price,
+  quantity,
+  dispatch,
+  bottomElement,
+}: Props) => {
+  function handleAddTask(event: SelectChangeEvent) {
+    const quantity = event.target.value as string;
+    dispatch({
+      type: 'add',
+      name,
+      quantity: Number(quantity),
+    });
+  }
 
-  const changeRegion = (event: SelectChangeEvent) => {
-    setRegion(event.target.value as string);
-  };
   return (
     <article css={container}>
       <div>
@@ -101,12 +113,11 @@ const ProductCard = ({ name, price, bottomElement }: Props) => {
           <div>
             Quantity:{' '}
             <Select
-              labelId='select-region'
-              id='select-region'
+              labelId='select-quantity'
+              id='select-quantity'
               size='small'
-              value={region}
-              placeholder='United States'
-              onChange={changeRegion}
+              value={quantity.toString()}
+              onChange={handleAddTask}
               sx={{
                 boxShadow: 'none',
                 '.MuiOutlinedInput-notchedOutline': { border: 0 },
@@ -115,15 +126,17 @@ const ProductCard = ({ name, price, bottomElement }: Props) => {
               <MenuItem value={1}>1</MenuItem>
               <MenuItem value={2}>2</MenuItem>
               <MenuItem value={3}>3</MenuItem>
+              <MenuItem value={4}>4</MenuItem>
+              <MenuItem value={5}>5</MenuItem>
             </Select>
           </div>
           {bottomElement}
         </div>
       </div>
       <div>
-        <p>{price}</p>
+        <p>$ {price}</p>
         <p>
-          <span>Total:</span> $730.00
+          <span>Total:</span> $ {price * quantity}
         </p>
       </div>
     </article>
