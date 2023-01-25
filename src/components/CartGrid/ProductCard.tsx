@@ -1,8 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
-import { Button } from '@mui/material';
 import ProductPhoto from '../../assets/Photo.png';
-import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined';
 import { SelectChangeEvent, Select, MenuItem } from '@mui/material';
 import { useState } from 'react';
 import { dark09 } from '../../styles';
@@ -85,7 +83,7 @@ const container = css`
 interface Props {
   name: string;
   price: string;
-  bottomElement: EmotionJSX.Element
+  bottomElement: EmotionJSX.Element;
 }
 
 const ProductCard = ({ name, price, bottomElement }: Props) => {
