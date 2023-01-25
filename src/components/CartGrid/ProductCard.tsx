@@ -6,6 +6,7 @@ import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined
 import { SelectChangeEvent, Select, MenuItem } from '@mui/material';
 import { useState } from 'react';
 import { dark09 } from '../../styles';
+import { EmotionJSX } from '@emotion/react/types/jsx-namespace';
 
 const container = css`
   display: flex;
@@ -84,9 +85,10 @@ const container = css`
 interface Props {
   name: string;
   price: string;
+  bottomElement: EmotionJSX.Element
 }
 
-const ProductCard = ({ name, price }: Props) => {
+const ProductCard = ({ name, price, bottomElement }: Props) => {
   const [region, setRegion] = useState('1');
 
   const changeRegion = (event: SelectChangeEvent) => {
@@ -117,9 +119,7 @@ const ProductCard = ({ name, price }: Props) => {
               <MenuItem value={3}>3</MenuItem>
             </Select>
           </div>
-          <Button>
-            <DeleteOutlineOutlinedIcon fontSize='small' /> <span>Remove</span>
-          </Button>
+          {bottomElement}
         </div>
       </div>
       <div>
