@@ -69,19 +69,19 @@ export default function cartReducer(cart: Cart, action: Action): Cart | never {
 const initialProducts = [
   {
     name: 'My Christmas pack',
-    price: 71.2,
+    price: 71.20,
     quantity: 3,
     type: 'pack',
   },
   {
     name: 'Basic T-Shirt',
-    price: 13.5,
+    price: 13.50,
     quantity: 1,
     type: 'product',
   },
   {
     name: 'Woman bottle',
-    price: 36.5,
+    price: 36.50,
     quantity: 2,
     type: 'product',
   },
