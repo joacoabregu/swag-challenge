@@ -36,7 +36,7 @@ const container = css`
 
         .MuiSelect-select {
           padding-left: 4px;
-          padding-right: 27px;
+          padding-right: 29px;
         }
         svg {
           color: black;
@@ -65,15 +65,18 @@ const container = css`
       }
     }
   }
+  // Product Price container
   > div:nth-of-type(2) {
     text-align: right;
     > p {
       font-size: 18px;
       font-weight: 700;
     }
+    // Product Price
     > p:first-of-type {
       margin-bottom: 12px;
     }
+    // Total Price
     span {
       font-weight: 600;
     }
@@ -134,9 +137,9 @@ const ProductCard = ({
         </div>
       </div>
       <div>
-        <p>$ {price}</p>
+        <p>$ {price.toFixed(2).replace(/\.00$/,'')}</p>
         <p>
-          <span>Total:</span> $ {price * quantity}
+          <span>Total:</span> $ {(price * quantity).toFixed(2).replace(/\.00$/,'')}
         </p>
       </div>
     </article>

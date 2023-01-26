@@ -80,7 +80,7 @@ const Summary = ({ cart }: Props) => {
       <Divider />
       <div>
         <p>Total</p>
-        <p>$ {cart.totalPrice}</p>
+        <p>$ {cart.totalPrice.toFixed(2).replace(/\.00$/,'')}</p>
       </div>
       <Button variant='contained' fullWidth>
         Proceed to Checkout
